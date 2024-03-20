@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>打字機消消樂</title>
+
+</head>
+<body>
+
+<div id="container" tabindex="0" class="blockquote text-nowrap"></div>
+
+<script>
+  var container = document.getElementById('container');
+  var letters = "abcdefghijklmnopqrstuvwxyz";
+
+ 
+  window.onload = function() {
+    generateRandomString();
+  }
+
+ 
+  window.addEventListener("keyup", function(e) {
+    if (e.key === 'Escape') {
+     
+      container.textContent = "";
+    } else if (e.key === 'Backspace') {
+      
+      var str = container.textContent;
+      container.textContent = str.substring(0, str.length - 1);
+    } else {
+      
+      var firstChar = container.textContent.charAt(0);
+      if (e.key === firstChar) {
+       
+        container.textContent = container.textContent.substring(1);
+      }
+     
+      generateRandomString();
+    }
+  });
+
+  
+  function generateRandomString() {
+    var randomStringL = Math.floor(Math.random() * 3) + 1; 
+    var randomString = "";
+    for (var i = 0; i < randomStringL; i++) {
+      var randomIndex = Math.floor(Math.random() * letters.length);
+      randomString += letters.charAt(randomIndex);
+    }
+    container.textContent += randomString;
+  }
+</script>
+
+</body>
+</html>
